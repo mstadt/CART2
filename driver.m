@@ -1,5 +1,8 @@
 clear all;
 
+% Dose level
+cell_dose = 100e6;
+
 % Initial conditions
 % NOTE: I got this from looking at the first row of the sim results
 % in Kirouac code
@@ -7,11 +10,13 @@ Tm0 = 0;
 Te10 = 0;
 Te20 = 0;
 Tx0 = 0;
-B0 = 1; % start > 0 for tumor growth
-Ba0 = 0;
+% B0 = 1; % start > 0 for tumor growth
+% Ba0 = 0;
 %B0 = 2.271440561000000e+08; %2.2714e+08; %9.7317e+07; %9.7e7; % steady state B0 %1e10;
 %Ba0 = 8.804326318471625e+08; %8.8043e+08; %3.7721e+08; %1e10;
-dose0 = 0;
+B0 = 1e10;
+Ba0 = 1e10;
+dose0 = cell_dose; %0; % dose at t  = 0
 doseX0 = 0;
 
 IC = [Tm0;Te10;Te20;Tx0;B0;Ba0;dose0;doseX0];
@@ -23,17 +28,16 @@ parsCR = pars.pCR;
 parsNR = pars.pNR;
 parsPR = pars.pPR;
 
-% take first set of parameters for one simulation
+% take one example patient
 params = parsCR(:,1); 
 
 
 % Time span
 t0 = 0;
-tf = 5e3; % simulation time in days
+tf = 365; % simulation time in days
 tspan = [t0,tf];
 
-% Dose level
-cell_dose = 100e6;
+
 
 %% Run simulation
 options = odeset('RelTol',1e-4, 'AbsTol',1e-7); % ODE solver settings
