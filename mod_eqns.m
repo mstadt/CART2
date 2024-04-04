@@ -1,18 +1,16 @@
 function dydt = mod_eqns(t,y,params)
 % Model equations for Kirouac et al., 2023
+
 %% set variable names
-Tx = y(1); % exhausted T cells
-T = y(2);% total T cells
-B = y(3); % CD19 B cells
-Ba = y(4); % Bcell antigen
-Tm = y(5); % T memory
-Te1 = y(6); % T effector 1
-Te2 = y(7); % T effector 2 (expanded)
+Tm = y(1); % T memory
+Te1 = y(2); % T effector 1
+Te2 = y(3); % T effector 2
+Tx = y(4); % exhausted T cells
+B = y(5); % CD19 B cells
+Ba = y(6); % Bcell antigen
+dose = y(7); % dose
+doseX = y(8); % doseX
 
-
-% PK
-%dose = y(8); % dose infused
-%doseX = y(9); % remanant dose
 %% set parameters
 B50 = params(1); % Ba driving toggle switch
 uB = params(2); % Bcell proliferation rate
@@ -42,8 +40,47 @@ fractionTe1 = params(25); % fraction Te1
 fractionTe2 = params(26); % fraction Te2
 fractionTx = params(27); % fraction Tx
 
-
 %% ODES
-dydt = zeros(length(y));
-% TODO: write the functions
+dydt = zeros(length(y),1);
+
+% d(Tm)/dt
+dydt(1) = ((um*f_max*(1-HillEQ(Ba,km,B50))*zerolimit(Tm,1)) ...
+            - (um*(1-f_max*(1-HillEQ(Ba,km,B50)))*zerolimit(Tm,1)) ...
+            - (dm*zerolimit(Tm,1)) + (fractionTm*doseX)...
+            + (rm*(1-HillEQ(Ba,kr,B50))*Te2));
+
+% d(Te1)/dt
+dydt(2) = (2*(um*(1-f_max*(1-HillEQ(Ba,km,B50)))*zerolimit(Tm,1))...
+            - (ue*HillEQ(Ba,ke,B50)*zerolimit(Te1,1)) ...
+            - (de1*zerolimit(Te1,1)) ...
+            + (fractionTe1*doseX));
+
+% d(Te2)/dt
+dydt(3) = ((ue*HillEQ(Ba,ke,B50)*zerolimit(Te1,0)*2^N)...
+            - (kex*HillEQ(Ba,kx,B50)*zerolimit(Te2,1)) ...
+            - (de2*zerolimit(Te2,1)) + (fractionTe2*doseX)...
+            - (rm*(1-HillEQ(Ba,kr,B50))*Te2));
+
+% d(Tx)/dt
+dydt(4) = ((kex*HillEQ(Ba,kx,B50)*zerolimit(Te2,1))...
+            - (dx*zerolimit(Tx,1)) + (fractionTx*doseX));
+
+% d(B)/dt
+dydt(5) = ((uB*zerolimit(B,1)*(1-B/Bmax))...
+            - (k_kill*B*HillEQ(zerolimit(Te2,1),kt,TK50)));
+
+% d(Ba)/dt
+dydt(6) = ((kb1*B) - (kb2*Ba));
+
+% d(dose)/dt
+dydt(7) = -(f_loss*dose) - (1*dose);
+
+% d(doseX)/dt
+dydt(8) = -(fractionTm*doseX) ...
+            - (fractionTe1*doseX)...
+            - (fractionTe2*doseX) ...
+            - (fractionTx*doseX)...
+            + (1*dose);
+
+
 end
