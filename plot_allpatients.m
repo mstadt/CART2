@@ -1,6 +1,7 @@
 clear all;
 
 date_str = '04-Apr-2024';
+cell_dose = 100e6;
 
 cmapNR = cool(30); % blues % non-responder
 cmapCR = spring(24); % pinks % responder
@@ -37,7 +38,8 @@ for ii = 1:12
     fnamebase = strcat('./sims_patients/',...
                     date_str,...
                     '_KirouacPatients',...
-                    '_patID-', num2str(ii));
+                    '_patID-', num2str(ii),...
+                    '_dose-', num2str(cell_dose));
     fnameCR = strcat(fnamebase, '_CR.mat');
     fnameNR = strcat(fnamebase,'_NR.mat');
     fnamePR = strcat(fnamebase,'_PR.mat');
