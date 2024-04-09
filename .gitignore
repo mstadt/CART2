@@ -1,3 +1,7 @@
 
 *.asv
 /VPsims
+/vary_dE2
+/vary_dM
+/vary_muM
+/varyTK50

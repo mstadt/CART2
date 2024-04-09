@@ -26,7 +26,6 @@ scatter(SCORE(13:24,1)',SCORE(13:24,2)',ms,cPR,'filled','s')
 scatter(SCORE(25:36,1)',SCORE(25:36,2)',ms,cNR,'filled','^')
 legend('complete responder','partial responder','non-responder','location','southwest')
 hold off
-%set(figure(2),'Units','inches','Position',[5,5,4.25/2,4.25/2])
 xlabel('PC-1')
 ylabel('PC-2')
 set(gca,'fontsize',18)
