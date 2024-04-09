@@ -2,7 +2,8 @@
 clear all;
 
 % Parameter values
-dat = load('./VP/08-Apr-2024_VP_N-1000_paramvals.mat');
+%dat = load('./VP/08-Apr-2024_VP_N-1000_paramvals.mat');
+dat = load('./VP/09-Apr-2024_VP_N-10000_paramvals.mat');
 
 VPpars = dat.VPpars;
 
@@ -34,7 +35,8 @@ t0 = 0;
 tf = 365; % simulation time in days
 tspan = [t0,tf];
 
-options = odeset('RelTol',1e-3, 'AbsTol',1e-3); % ODE solver settings
+options = odeset('RelTol',1e-4, 'AbsTol',1e-4,...
+                'NonNegative', 1:numel(IC)); % ODE solver settings
 
 %% Conduct simulations for each parameter set
 for ii = 1:N_VP
@@ -44,10 +46,8 @@ for ii = 1:N_VP
     params = VPpars(:,ii);
 
     % Conduct simulation
-%     [t,y] = ode15s(@(t,y) mod_eqns(t,y,params),...
-%                         tspan, IC, options);
-    [t,y] = ode45(@(t,y) mod_eqns(t,y,params),...
-                            tspan, IC, options);
+    [t,y] = ode15s(@(t,y) mod_eqns(t,y,params),...
+                        tspan, IC, options);
 
     fname = strcat('./VPsims/',...
                         date,...

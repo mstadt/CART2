@@ -1,10 +1,10 @@
 % Script for generating a VP
 clear all;
 
-rng(8); % set random seed
+rng(24); % set random seed
 
 % number of VP
-N = 1000;
+N = 1e4;
 
 % Parameters from Kirouac et al. 2023
 pars = load('./pars/pars_Kirouac2023.mat');
