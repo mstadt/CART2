@@ -42,7 +42,7 @@ for ii = 1:12
     
     
     % Run simulation
-    options = odeset('RelTol',1e-4, 'AbsTol',1e-7); % ODE solver settings
+    options = odeset('RelTol',1e-4, 'AbsTol',1e-7,'NonNegative', 1:numel(IC)); % ODE solver settings
     [tCR,yCR]=ode15s(@(t,y) mod_eqns(t,y,paramsCR),...
                             tspan, IC, options);
     %T = Tm + Te1 + Te2 +Tx
