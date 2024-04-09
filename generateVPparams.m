@@ -27,3 +27,13 @@ for ii = 1:length(minvals)
 end
 
 %% Save parameter values for VP
+
+fname = strcat('./VP/', ...
+                    date,...
+                    '_VP',...
+                    '_N-', num2str(N),...
+                    '_paramvals.mat');
+
+save(fname)
+
+fprintf('VP saved to: \n %s \n', fname)
