@@ -1,7 +1,7 @@
 % Script for generating a VP
 clear all;
 
-rng(24); % set random seed
+rng(9); % set random seed
 
 % number of VP
 N = 1e4;

@@ -39,6 +39,10 @@ options = odeset('RelTol',1e-4, 'AbsTol',1e-4,...
                 'NonNegative', 1:numel(IC)); % ODE solver settings
 
 %% Conduct simulations for each parameter set
+VP_45 = [1468, 2369, 2463, 2464, 2793, 4401, 5444, 6551,...
+        7591, 7851, 8670, 9591, 9647, 9906];
+
+
 for ii = 1:N_VP
     if mod(ii,1) == 0
         fprintf('VP number: %i \n', ii);
@@ -46,8 +50,14 @@ for ii = 1:N_VP
     params = VPpars(:,ii);
 
     % Conduct simulation
-    [t,y] = ode15s(@(t,y) mod_eqns(t,y,params),...
-                        tspan, IC, options);
+    if ismember(ii,VP_45)
+        [t,y] = ode45(@(t,y) mod_eqns(t,y,params),...
+                            tspan, IC, options);
+    else
+        [t,y] = ode15s(@(t,y) mod_eqns(t,y,params),...
+                            tspan, IC, options);
+    end
+    
 
     fname = strcat('./VPsims/',...
                         date,...
