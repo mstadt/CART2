@@ -2,8 +2,8 @@
 clear all;
 
 % Parameter values
-%dat = load('./VP/08-Apr-2024_VP_N-1000_paramvals.mat');
-dat = load('./VP/09-Apr-2024_VP_N-10000_paramvals.mat');
+dat = load('./VP/10-Apr-2024_VP_N-10000_paramvals.mat');
+%dat = load('./VP/09-Apr-2024_VP_N-10000_paramvals.mat');
 
 VPpars = dat.VPpars;
 
