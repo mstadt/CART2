@@ -82,3 +82,4 @@ b.CData(1:3,:) = repmat(c1,[3,1]);
 b.CData(4:end-1,:) = repmat(c2,[23,1]);
 b.CData(end,:) = repmat(c3,[1,1]);
 set(gca,'fontsize',18)
+
