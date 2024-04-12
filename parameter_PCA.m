@@ -6,7 +6,10 @@ pars = load('./pars/pars_Kirouac2023.mat');
 parsCR = pars.pCR;
 parsNR = pars.pNR;
 parsPR = pars.pPR;
+Pmat = [parsCR parsPR parsNR];
 
+
+% colors for plot
 cmapNR = parula(30); % blues % non-responder
 cNR = cmapNR(1,:);
 cmapCR = spring(24); % pinks % responder
@@ -14,7 +17,7 @@ cCR = cmapCR(3,:);
 cmapPR = summer(24); % greens % partial responder
 cPR = cmapPR(3,:);
 
-Pmat = [parsCR parsPR parsNR];
+
 [COEFF, SCORE, LATENT, ~, EXPLAINED, ~] = pca(log10(Pmat)');
 %disp(EXPLAINED(1:2))
 fprintf('PC1 variability: %f \n', EXPLAINED(1))

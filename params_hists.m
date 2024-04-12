@@ -122,6 +122,39 @@ xlabel('log10(TK50)')
 set(gca,'fontsize',fgca)
 legend(labs)
 
+%% Bmax histogram
+figure(3)
+clf;
+hold on
+% Bmax
+id = 20; % param id
+h1 = histogram(log10(parsCR(id,:)), 'FaceColor', cCR, 'FaceAlpha', 0.8);
+h1.NumBins = 10;
+ylim(yminmax)
+xlim([7,13])
+xlabel('log10(Bmax)')
+title('CR')
+set(gca,'fontsize',fgca)
+
+
+figure(4)
+clf;
+h2 = histogram(log10(parsPR(id,:)), 'FaceColor', cPR, 'FaceAlpha', 0.6);
+h2.NumBins = 10;
+ylim(yminmax)
+xlabel('log10(Bmax)')
+title('PR')
+xlim([7,13])
+set(gca,'fontsize',fgca)
+
+figure(5)
+clf;
+h3 = histogram(log10(parsNR(id,:)), 'FaceColor', cNR, 'FaceAlpha', 0.4);
+h3.NumBins = 10;
+ylim(yminmax)
+xlabel('log10(Bmax)')
+title('NR')
+xlim([7,13])
 
 %% NR only
 alpha = 0.6;
@@ -338,5 +371,5 @@ h3.NumBins = 10;
 ylim(yminmax)
 xlim([5,9])
 xlabel('log10(TK50)')
-set(gca,'fontsize',fgca)
+
 
