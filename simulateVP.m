@@ -2,8 +2,10 @@
 clear all;
 
 % Parameter values
-dat = load('./VP/10-Apr-2024_VP_N-10000_paramvals.mat');
-
+%dat = load('./VP/10-Apr-2024_VP_N-10000_paramvals.mat');
+%dat = load('./VP/11-Apr-2024_VP_N-10000_paramvals.mat');
+dat = load('./VP/11-Apr-2024_VP_N-1000_notes-minpars_paramvals.mat');
+notes = 'minpars';
 VPpars = dat.VPpars;
 
 N_VP = size(VPpars,2); % number of VPs
@@ -38,11 +40,8 @@ options = odeset('RelTol',1e-4, 'AbsTol',1e-4,...
                 'NonNegative', 1:numel(IC)); % ODE solver settings
 
 %% Conduct simulations for each parameter set
-VP_45 = [1468, 2369, 2463, 2464, 2793, 4401, 5444, 6551,...
-        7591, 7851, 8670, 9591, 9647, 9906];
-
-
-for ii = 1:N_VP
+VP_45 = [130,277];
+for ii = 277:N_VP
     if mod(ii,1) == 0
         fprintf('VP number: %i \n', ii);
     end
@@ -62,6 +61,7 @@ for ii = 1:N_VP
                         date,...
                         '_VPnum-', num2str(ii),...
                         '_dose-', num2str(cell_dose),...
+                        '_notes-', notes,...
                         '.mat');
     save(fname, 'params', 'ii', 'tspan', 't','y','cell_dose');
 

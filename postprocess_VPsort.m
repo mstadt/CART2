@@ -2,15 +2,14 @@
 clear all;
 
 % Postprocess VP results
-
-date_str = '10-Apr-2024';
+notes = 'minpars';
+date_str = '11-Apr-2024';
 cell_dose = 100e6;
 
-% fname = strcat('./VPsims/',...
-%                         date,...
-%                         '_VPnum-', num2str(ii),...
-%                         '_dose-', num2str(cell_dose),...
-%                         '.mat');
+%load('./VP/2024-04-11_VPids.mat')
+load('./VP/VPsort_notes-minpars.mat');
+
+
 % fig specs
 fgca = 18;
 lw = 4;
@@ -22,7 +21,7 @@ subplot(1,2,1)
 xlabel('time (day)')
 ylabel('CAR-T (cells/\muL)')
 xlim([0,365])
-ylim([1e-4,1e10])
+ylim([1e-12,1e10])
 set(gca,'fontsize',fgca, 'YScale','log')
 grid on
 hold on
@@ -36,23 +35,26 @@ set(gca,'fontsize',fgca, 'YScale','log')
 grid on
 hold on
 
-N = 10;
+ids = ids_diverge;
+N = length(ids);
 cmap = turbo(N);
-% First N VP
-for ii = 1:10 %2:3
+% Plot VP
+for ii = 1:length(ids)
+    id = ids(ii);
     fname = strcat('./VPsims/',...
                         date_str,...
-                        '_VPnum-', num2str(ii),...
+                        '_VPnum-', num2str(id),...
                         '_dose-', num2str(cell_dose),...
+                        '_notes-',notes,...
                         '.mat');
     dat = load(fname);
     T = dat.y(:,1) + dat.y(:,2) + dat.y(:,3) + dat.y(:,4);
 
     subplot(1,2,1)
-    plot(dat.t, T *sf, 'linewidth',lw,'color',cmap(ii,:))
+    plot(dat.t, real(T) *sf, 'linewidth',lw,'color',cmap(ii,:))
     
     subplot(1,2,2)
-    plot(dat.t, dat.y(:,5) * sf, 'linewidth',lw,'color',cmap(ii,:))
+    plot(dat.t, real(dat.y(:,5)) * sf, 'linewidth',lw,'color',cmap(ii,:))
 
 %     if min(dat.y(:,5)) < 1e-9
 %         disp('small CART')
@@ -68,5 +70,11 @@ for ii = 1:10 %2:3
 %     subplot(2,2,4)
 %     plot(dat.t, dat.y(:,4),'linewidth',lw)
 %     
-
+%flag = 0;
+%flag = input('break? (enter 1 for break, 0 otherwise)');
+%disp(id)
+%pause(1)
+% if flag
+%     break;
+% end
 end

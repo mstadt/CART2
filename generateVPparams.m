@@ -4,7 +4,7 @@ clear all;
 rng(9); % set random seed
 
 % number of VP
-N = 1e4;
+N = 1e3;
 
 % Parameters from Kirouac et al. 2023
 % pars = load('./pars/pars_Kirouac2023.mat');
@@ -20,15 +20,15 @@ N = 1e4;
 
 % Use parameter ranges from Table 1 in Kirouac et al 2023
 minvals = [1e6; % B50 (1)
-            0.001; % uB (2)
+            0.05; %0.001; % uB (2) % FIXED VALUE
             0.001; % kkill (3)
-            1; % floss (4)
+            800; %1; % floss (4) % FIXED VALUE
             1e5; % TK50 (5)
-            0.2; % kt (6)
+            1; %0.2; % kt (6) % FIXED VALUE
             0.001; % kB1 (7)
             0.001; % kB2 (8)
             0.001; % um (9)
-            0.2; % km (10)
+            1; %0.2; % km (10) % FIXED VALUE
             0.5; % fmax (11)
             0.2; % ke (12)
             0.001; % uE (13)
@@ -38,8 +38,8 @@ minvals = [1e6; % B50 (1)
             0.001; % dE1 (17)
             0.001; % dE2 (18)
             0.001; % dX (19)
-            1e8; % Bmax (20)
-            0.2; % kx (21)
+            1e10; %1e8; % Bmax (20) % FIXED VALUE
+            1; %0.2; % kx (21) % FIXED VALUE
             0.001; % rm (22)
             0.2; % kr (23)
             1; % fractionTm (24)
@@ -49,15 +49,15 @@ minvals = [1e6; % B50 (1)
             ];
 
 maxvals = [1e10; % B50 (1)
-            0.1; % uB (2)
+            0.05; %0.1; % uB (2) % FIXED VALUE
             1; % kkill (3)
-            1000; % floss (4)
+            800; %1000; % floss (4) % FIXED VALUE
             1e9; % TK50 (5)
-            3; % kt (6)
+            1; %3; % kt (6)
             1; % kB1 (7)
             1; % kB2 (8)
             1; % um (9)
-            3; % km (10)
+            1; %3; % km (10) % FIXED VALUE
             0.99; % fmax (11)
             3; % ke (12)
             1; % uE (13)
@@ -67,8 +67,8 @@ maxvals = [1e10; % B50 (1)
             1; % dE1 (17)
             1; % dE2 (18)
             1; % dX (19)
-            1e12; % Bmax (20)
-            3; % kx (21)
+            1e10; %1e12; % Bmax (20) % FIXED VALUE
+            1; %3; % kx (21) % FIXED VALUE
             1; % rm (22)
             3; % kr (23)
             10; % fractionTm (24)
@@ -86,11 +86,12 @@ for ii = 1:length(minvals)
 end
 
 %% Save parameter values for VP
-
+notes = 'minpars';
 fname = strcat('./VP/', ...
                     date,...
                     '_VP',...
                     '_N-', num2str(N),...
+                    '_notes-', notes,...
                     '_paramvals.mat');
 
 save(fname)
