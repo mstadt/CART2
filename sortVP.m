@@ -1,5 +1,4 @@
-% Determine if VP CART cells diverge
-% or go to 0
+% Determine labels for VP
 date_str = '11-Apr-2024';
 cell_dose = 100e6;
 notes = 'minpars'

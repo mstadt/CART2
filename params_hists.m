@@ -1,26 +1,23 @@
 % Create histograms of the NR, CR, and PR parameter values
+% from Kirouac et al., 2023
 clear all;
 
+
+
+% Load parameters
+pars = load('./pars/pars_Kirouac2023.mat');
+parsCR = pars.pCR;
+parsNR = pars.pNR;
+parsPR = pars.pPR;
+
+% Figure specs
+% colors for figures
 cmapNR = parula(30); % blues % non-responder
 cNR = cmapNR(1,:);
 cmapCR = spring(24); % pinks % responder
 cCR = cmapCR(3,:);
 cmapPR = summer(24); % greens % partial responder
 cPR = cmapPR(3,:);
-
-% Parameters
-pars = load('./pars/pars_Kirouac2023.mat');
-parsCR = pars.pCR;
-parsNR = pars.pNR;
-parsPR = pars.pPR;
-
-% Top 6 parameters by variance
-% dE2 - 18
-% muM - 9
-% dM - 16
-% dE1 - 17
-% kkill - 3
-% TK50 - 5
 yminmax = [0,12];
 fgca = 16;
 labs = {'complete responder','partial responder', 'non-responder'};

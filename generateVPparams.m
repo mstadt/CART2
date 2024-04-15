@@ -1,4 +1,5 @@
-% Script for generating a VP
+% Script for generating a VP parameter set
+% Results are saved under "VP"
 clear all;
 
 rng(9); % set random seed
