@@ -1,3 +1,4 @@
+% Plot results for each of the VPs in Kirouac et al. 2023
 clear all;
 
 date_str = '09-Apr-2024';
