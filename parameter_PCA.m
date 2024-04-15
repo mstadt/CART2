@@ -1,12 +1,13 @@
 % PCA of parameter sets between NR, PR, and CR
-% This code is modified from the code provided in Kirouac et al. 2023
+% This is modified from the code provided in Kirouac et al. 2023
 
 clear all;
+% load parameters
 pars = load('./pars/pars_Kirouac2023.mat');
 parsCR = pars.pCR;
 parsNR = pars.pNR;
 parsPR = pars.pPR;
-Pmat = [parsCR parsPR parsNR];
+Pmat = [parsCR parsPR parsNR]; % put all parameters in one matrix
 
 
 % colors for plot
@@ -17,12 +18,17 @@ cCR = cmapCR(3,:);
 cmapPR = summer(24); % greens % partial responder
 cPR = cmapPR(3,:);
 
-
+% Conduct PCA
 [COEFF, SCORE, LATENT, ~, EXPLAINED, ~] = pca(log10(Pmat)');
-%disp(EXPLAINED(1:2))
+
+% Print EXPLAINED results
 fprintf('PC1 variability: %f \n', EXPLAINED(1))
 fprintf('PC2 variability: %f \n', EXPLAINED(2))
+
+% Get PCA coefficients
 PCAcoeff = COEFF(:,[1 2]);
+
+% Plot PCA results
 figure(2)
 clf;
 hold on
