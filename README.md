@@ -9,11 +9,11 @@ This code is for my AM 881 (Introduction to Mathematical Oncology) final project
 - **param_hists.m** Loads and creates histograms of the parameters for the 36 VPs from Kirouac et al., 2023. This is used to make Fig. B.6, B.7, B.8
 - **generateVPparams.m** Generates parameter set for VPs. Results are saved to directory "VP"
 - **simulateVP.m** Simulate CART therapy for each VP in the VP set generated from generateVPparams
-- **sortVP.m** Creates labels for each of the VP based on the simulation results. NOTE: This requires the file VPsims.zip (see below) or will need to conduct simulations using simulateVP.m first.
+- **sortVP.m** Creates labels for each of the VP based on the simulation results. NOTE: This requires the directory VPsims (see below) or will need to conduct simulations using simulateVP.m first.
 - **VP_paramPCA.m** Conduct PCA on the VP population results. Makes Fig. C.1.
 - **VPparams_hist.m** Conducts ANOVA test for each parameter and plots a histogram of the values for diverges, responders, and non-responders. Makes Fig. C.2 and C.3 - C.8
 
 
 
 ### Simulation data
-The VP simulation data directory VPsim has been uploaded to [https://figshare.com/articles/dataset/VP_simulations_for_CART_project/25612824](https://figshare.com/articles/dataset/VP_simulations_for_CART_project/25612824). This is required to run "sortVP.m".
+The VP simulation data directory VPsims has been uploaded to [https://figshare.com/articles/dataset/VP_simulations_for_CART_project/25612824](https://figshare.com/articles/dataset/VP_simulations_for_CART_project/25612824). This is required to run "sortVP.m".
