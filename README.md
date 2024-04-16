@@ -9,6 +9,6 @@ This code is for my AM 881 (Introduction to Mathematical Oncology) final project
 - **param_hists.m** Loads and creates histograms of the parameters for the 36 VPs from Kirouac et al., 2023. This is used to make Fig. B.6, B.7, B.8
 - **generateVPparams.m** Generates parameter set for VPs. Results are saved to directory "VP"
 - **simulateVP.m** Simulate CART therapy for each VP in the VP set generated from generateVPparams
-- **sortVP.m** Creates labels for each of the VP based on the simulation results.
+- **sortVP.m** Creates labels for each of the VP based on the simulation results. NOTE: This requires the file VPsims.zip or will need to conduct own simulations from simulateVP.m
 - **VP_paramPCA.m** Conduct PCA on the VP population results. Makes Fig. C.1.
 - **VPparams_hist.m** Conducts ANOVA test for each parameter and plots a histogram of the values for diverges, responders, and non-responders. Makes Fig. C.2 and C.3 - C.8
