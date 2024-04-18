@@ -15,5 +15,5 @@ This code is for my AM 881 (Introduction to Mathematical Oncology) final project
 
 
 
-### Simulation data
+### VP simulation data
 The VP simulation data directory VPsims has been uploaded to [https://figshare.com/articles/dataset/VP_simulations_for_CART_project/25612824](https://figshare.com/articles/dataset/VP_simulations_for_CART_project/25612824). This is required to run "sortVP.m".
